@@ -8,6 +8,7 @@ import com.orderhub.model.Users;
 import com.orderhub.repository.UsersRepository;
 
 import com.orderhub.repository.UsersRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,10 +21,15 @@ public class UserService {
     @Autowired
     UsersRepository repository;
 
+    @Autowired
+    PasswordEncoder encoder;
+
     // 1. Register User
     public UserResponseDto registerUser(UserRequestDto requestDto) {
 
         Users user = UserBuilder.buildUserFromUserRequestDTO(requestDto);
+        String encoded = encoder.encode(requestDto.getPassword());
+        user.setPassword(encoded);
 
         Users savedUser = repository.save(user);
 
