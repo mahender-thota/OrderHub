@@ -5,6 +5,7 @@ import com.orderhub.builder.OrderItemBuilder;
 import com.orderhub.dto.order.OrderRequestDto;
 import com.orderhub.dto.order.OrderResponseDto;
 import com.orderhub.dto.orderitem.OrderItemRequestDto;
+import com.orderhub.dto.orderitem.OrderItemResponseDto;
 import com.orderhub.execption.ProductNotFoundException;
 import com.orderhub.execption.UserNotFoundException;
 import com.orderhub.model.Order;
@@ -70,6 +71,33 @@ public class OrderService {
         Order saved = orderRepository.save(order);
 
         return OrderBuilder.buildOrderResponse(saved);
+    }
+
+    public OrderResponseDto getOrderById(Long orderId){
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found " + orderId));
+        return OrderBuilder.buildOrderResponse(order);
+    }
+
+    public List<OrderResponseDto> getAllOrders(){
+
+        List<Order> orders = orderRepository.findAll();
+        List<OrderResponseDto> orderResponseDtoList =new ArrayList<>();
+
+        for (Order item : orders){
+            OrderResponseDto orderResponseDto = OrderBuilder.buildOrderResponse(item);
+             orderResponseDtoList.add(orderResponseDto);
+        }
+        return orderResponseDtoList;
+    }
+
+    public void deleteOrder(Long orderId) {
+
+        Order order = orderRepository.findById(orderId)
+                                        .orElseThrow(() ->
+                                                 new RuntimeException("Order not found: " + orderId));
+
+        orderRepository.delete(order);
     }
 
 }
