@@ -1,6 +1,5 @@
 package com.orderhub.services;
 
-import com.orderhub.execption.UserNotFoundException;
 import com.orderhub.model.Users;
 import com.orderhub.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users byusername = repository.findByusername(username);
+        Users byusername = repository.findByUsername(username);
 
        return User.builder()
                 .username(username)
                 .password(byusername.getPassword())
                 .build();
-
     }
 }
