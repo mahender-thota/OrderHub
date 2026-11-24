@@ -1,10 +1,8 @@
 
-package com.orderhub.entity;
+package com.orderhub.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
 
 @Entity
 @Table(name = "order_items")

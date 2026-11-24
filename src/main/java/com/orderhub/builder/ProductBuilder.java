@@ -3,7 +3,7 @@ package com.orderhub.builder;
 
 import com.orderhub.dto.product.ProductRequestDto;
 import com.orderhub.dto.product.ProductResponseDto;
-import com.orderhub.entity.Product;
+import com.orderhub.model.Product;
 
 public class ProductBuilder {
 

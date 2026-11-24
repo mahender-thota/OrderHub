@@ -1,5 +1,5 @@
 
-package com.orderhub.entity;
+package com.orderhub.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

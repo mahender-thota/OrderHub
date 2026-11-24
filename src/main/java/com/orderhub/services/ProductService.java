@@ -3,7 +3,7 @@ package com.orderhub.services;
 import com.orderhub.builder.ProductBuilder;
 import com.orderhub.dto.product.ProductRequestDto;
 import com.orderhub.dto.product.ProductResponseDto;
-import com.orderhub.entity.Product;
+import com.orderhub.model.Product;
 import com.orderhub.execption.ProductNotFoundException;
 import com.orderhub.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
