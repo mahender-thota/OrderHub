@@ -3,9 +3,11 @@ package com.orderhub.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,13 +16,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    private LocalDateTime orderDate;
+    private LocalDate orderDate;
 
     private Double totalAmount;
 
@@ -30,6 +33,6 @@ public class Order {
     @JoinColumn(name = "user_id")
     private Users users;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",  cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 }
